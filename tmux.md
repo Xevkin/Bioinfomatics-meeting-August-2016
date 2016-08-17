@@ -1,2 +1,2 @@
 #Tmux
-Tmux is a _terminal multiplexer_.
+Tmux is a **terminal multiplexer**.
