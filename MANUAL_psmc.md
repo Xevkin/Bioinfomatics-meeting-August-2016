@@ -20,7 +20,7 @@ PSMC utilizes the distribution of Times since the Most Recent Common Ancestor (T
 ###Other features
 * Robust to recombination hotspots
 * Robust to large stretches of ambiguous bases ("N"s)
-* Masking coding regions (lower mutation rate) gives a *slightly* different history (shape is the same) -> not masking coding regions has minimal effect on estimations.
+* Masking coding regions (lower mutation rate) gives a nearly-identical history 
 * Coalesence occures less frequently in a structured population. Fewer coalescences is equiavelent to a larger effective population size -> inflates population size estimate for structured populations.
 * Can run on female X chromosomes - must scale plot by 4/3.
 * Combine two X chromosomes from two male individuals to create pseudo-diploid X chromosomes -> inference on timing of population splits.
@@ -70,11 +70,13 @@ Nadachowska-Brzyska (2016) developed guidelines for PSMC usage, baed on their an
 
 * Mean genome coverage of ≥18X
 * Per-site minimum coverage (-d) of 10
-* No more than 25% missing data
+* No more than 25% missing data (following filtering)
 
 
 ##Resources
-PSMC paper: http://www.nature.com/nature/journal/v475/n7357/full/nature10231.html
-PSMC github: https://github.com/lh3/psmc
-PSMC coverage discussion in Orlando 2013: http://www.nature.com/nature/journal/v499/n7456/extref/nature12323-s1.pdf
-PSMC coverage discussion in Nadachowska-Brzyska (2016): http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4793928/
+* PSMC paper: http://www.nature.com/nature/journal/v475/n7357/full/nature10231.html
+* PSMC github: https://github.com/lh3/psmc
+* PSMC coverage discussion in Orlando 2013: http://www.nature.com/nature/journal/v499/n7456/extref/nature12323-s1.pdf
+* PSMC coverage discussion in Nadachowska-Brzyska (2016): http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4793928/
+* My PSMC script (may need modifying): https://github.com/Xevkin/scripts_for_goat_project/blob/master/run_psmc.sh
+* 
