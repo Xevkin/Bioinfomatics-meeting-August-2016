@@ -37,12 +37,24 @@ MSMC *can* be run with unphased sequences; however it shows some biases at eithe
 `samtools mpileup -q 20 -Q 20 -C 50 -u -r <chr> -f <ref.fa> <bam> | bcftools call -c -V indels |\`
 `./bamCaller.py <mean_cov> <out_mask.bed.gz> | gzip -c > <out.vcf.gz>`
 3. The bed.gz sample mask file may need to be converted to a bed.txt.gz file in the correct format for msmc - this involves some reshaping of files.
-4. For each chromosome, you must run generate_multihetsep.py from msmc-tools to generate the msmc input files. You must have the sample vcf and mask files, as well as a reference mapability mask. For a single sample:
+4. For each chromosome, you must run generate_multihetsep.py from msmc-tools to generate the msmc input files. You must have the sample vcf and mask files, as well as a reference mapability mask. If running with multiple samples, add additional vcf and sample mask files. For more a single individual, the samples must all be phased.
 `./generate_multihetsep.py --mask=covered_sites_sample1_chr1.bed.txt.gz \`                 `--mask=mappability_mask_chr1.bed.txt.gz sample1_chr1.vcf.gz >sample1_chr1.msmc`
-
-If running with multiple samples, add additional vcf and sample mask files. For more a single individual, the samples must all be phased.
-5. Then run msmc:
+5. Then run msmc (single sample):
 `./msmc_linux_64bit -o  sample1 <all_msmc_files_for_autosomes>`
+For multiple samples, add the --fixedRecombination flag.
+
+You can also investigate population seperation at this stage, by defining subpopulations. In msmc1, these must be of equal size (and only two subpops). Refer to the msmc guide for this.
+
+R code to visualize output:
+`mu<-1e-8`
+`gen<-5`
+`sample1<-read.table(“<sample1.final.txt>”, header=T)`
+`sample2<-read.table(“<sample1.final.txt>”, header=T)`
+`plot(sample1$left_time_boundary/mu*gen, (1/sample1$lambda)/mu, log="x", ylim=c(0,100000),type="n", xlab="Years ago", ylab="effective population size")`
+`lines(sample1$left_time_boundary/mu*gen, (1/sample1$lambda)/mu, type="s", col="blue")`
+`lines(sample2$left_time_boundary/mu*gen, (1/sample2$lambda)/mu, type="s", col="green")`
+`legend("topleft", legend=c("SOM","HAR", "HL", "Bed3", "Hxh2"), col=c("red", "blue", "green", "black", "orange"), lty=c(1,1,1,1,1))`
+
 
 
 
