@@ -32,9 +32,9 @@ First we must generate a .fq file that represent bins of sequence and whether a 
 
 `samtools mpileup -C50 -uf ref.fa aln.bam | bcftools view -c -O v -o - | vcfutils.pl vcf2fq -d 10 -D 100 | gzip > diploid.fq.gz`
 
-**Note**Here we exclude all sites with less than a depth of 10 and any with more than 100. In general, I exclude sites with less than a third the mean coverage, and more than twice the mean coverage. So it varies from sample to sample.
+**Note:**Here we exclude all sites with less than a depth of 10 and any with more than 100. In general, I exclude sites with less than a third the mean coverage, and more than twice the mean coverage. So it varies from sample to sample.
 
-**Note**The version of samtools I'm using here is v1.2. If you use the incorrect version, it is incompatible with later steps in the pipeline.
+**Note:**The version of samtools I'm using here is v1.2. If you use the incorrect version, it will cause problems in the pipeline.
 
 We convert this fq file to a psmcfa file:
 
@@ -46,12 +46,22 @@ We then run psmc. From the psmc github page: "In particular, the `-p' option spe
 
 Finally we plot the trace. During this we should account for false negatives (missed heterozygotes) by scaling the mutation rate. To estimate the FNR, I calculate the proportion of the genome that falls within the the -d and -D options from the previous step eg the proportion of the genome falling within 10 and 100 depth (yes, this is imperfect). I do this using GATK's DepthOfCoverage.
 
-utils/psmc_plot.pl -M "sample=0.1" output_name diploid.psmc
+`utils/psmc_plot.pl -M "sample=0.1" output_name diploid.psmc`
 
 You can also plot multiple samples at the same time:
 
-utils/psmc_plot.pl -M "sample1=0.1, sample2=0.15" output_name sample1.psmc sample2.psmc
+`utils/psmc_plot.pl -M "sample1=0.1, sample2=0.15" output_name sample1.psmc sample2.psmc`
+
+You can also perform bootstraping (do not try to account for FNR!):
+
+`utils/fq2psmcfa -q20 diploid.fq.gz > diploid.psmcfa`
+`utils/splitfa diploid.psmcfa > split.psmcfa`
+`psmc -N25 -t15 -r5 -p "4+25*2+4+6" -o diploid.psmc diploid.psmcfa`
+`seq 100 | xargs -i echo psmc -N25 -t15 -r5 -b -p "4+25*2+4+6" -o round-{}.psmc split.fa | sh`
+`cat diploid.psmc round-*.psmc > combined.psmc`
+`utils/psmc_plot.pl -pY50000 combined combined.psmc`
 
 
-##Papers
+##Resources
 PSMC paper: http://www.nature.com/nature/journal/v475/n7357/full/nature10231.html
+PSMC github: https://github.com/lh3/psmc
