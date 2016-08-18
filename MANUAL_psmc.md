@@ -64,12 +64,13 @@ You can also perform bootstrapping - sample subsequences with replacement, estim
 ###Coverage
 Orlando (2013) downsampled a 21.1X horse genome, and determined the FNR correction needed to return to the original demographic history.
 * 15.8X - ~0.06
-* 10.5X - ~0.26 - however, older events become less accurate
+* 10.5X - ~0.26 - however older events become less accurate
 
 Nadachowska-Brzyska (2016) developed guidelines for PSMC usage, baed on their analysis of ~200 Flycatcher genomes.
-*Mean genome coverage of ≥18X
-*Per-site minimum coverage (-d) of 10
-*No more than 25% missing data
+
+* Mean genome coverage of ≥18X
+* Per-site minimum coverage (-d) of 10
+* No more than 25% missing data
 
 
 ##Resources
