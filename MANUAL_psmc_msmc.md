@@ -24,7 +24,18 @@ PSMC utilizes the distribution of Times since the Most Recent Common Ancestor (T
 * Coalesence occures less frequently in a structured population. Fewer coalescences is equiavelent to a larger effective population size -> inflates population size estimate for structured populations.
 * Can run on female X chromosomes - must scale plot by 4/3.
 * Combine two X chromosomes from two male individuals to create pseudo-diploid X chromosomes -> inference on timing of population splits.
-* ![PSMC image 3](https://github.com/Xevkin/Bioinfomatics-meeting-August-2016/blob/master/psmc.png)
+![PSMC image 3](https://github.com/Xevkin/Bioinfomatics-meeting-August-2016/blob/master/psmc.png)
+
+###Running PSMC
+From the psmc github page:
+
+  samtools mpileup -C50 -uf ref.fa aln.bam | bcftools view -c - \
+  vcfutils.pl vcf2fq -d 10 -D 100 | gzip > diploid.fq.gz
+
+  utils/fq2psmcfa -q20 diploid.fq.gz > diploid.psmcfa
+  psmc -N25 -t15 -r5 -p "4+25*2+4+6" -o diploid.psmc diploid.psmcfa
+  utils/psmc2history.pl diploid.psmc | utils/history2ms.pl > ms-cmd.sh #you do not need this step (generates ms input)
+  utils/psmc_plot.pl diploid diploid.psmc
 
 
 ##Papers
