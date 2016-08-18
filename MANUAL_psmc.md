@@ -58,10 +58,15 @@ You can also plot multiple samples at the same time:
 You can also perform bootstrapping - sample subsequences with replacement, estimating demographic history for these subsequences (do not try to account for FNR!):
 
 `utils/fq2psmcfa -q20 diploid.fq.gz > diploid.psmcfa`
+
 `utils/splitfa diploid.psmcfa > split.psmcfa`
+
 `psmc -N25 -t15 -r5 -p "4+25*2+4+6" -o diploid.psmc diploid.psmcfa`
+
 `seq 100 | xargs -i echo psmc -N25 -t15 -r5 -b -p "4+25*2+4+6" -o round-{}.psmc split.fa | sh`
+
 `cat diploid.psmc round-*.psmc > combined.psmc`
+
 `utils/psmc_plot.pl -pY50000 combined combined.psmc`
 
 ###Coverage
@@ -82,4 +87,4 @@ Nadachowska-Brzyska (2016) developed guidelines for PSMC usage, baed on their an
 * PSMC coverage discussion in Orlando 2013: http://www.nature.com/nature/journal/v499/n7456/extref/nature12323-s1.pdf
 * PSMC coverage discussion in Nadachowska-Brzyska (2016): http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4793928/
 * My PSMC script (may need modifying): https://github.com/Xevkin/scripts_for_goat_project/blob/master/run_psmc.sh
-* 
+*
