@@ -13,4 +13,6 @@ Say I want to leave tmux and see what other tmux sessions I have running. First 
 
 ![tmux image 3](https://github.com/Xevkin/Bioinfomatics-meeting-August-2016/blob/master/tmux_3.png)
 
-I can then attach whichever session I choose. For example, if I want to ses my msmc session: **tmux att -t msmc**.
+I can then attach whichever session I choose. For example, if I want to see my msmc session: **tmux att -t msmc**.
+
+You can also modify your installation of tmux using plugins - use the tmux plugin manager https://github.com/tmux-plugins/tpm to simplify this. An example of a tmux plugin: tmux-resurrect, which allows you to restore a session during a system restart. https://github.com/tmux-plugins/tmux-resurrect
