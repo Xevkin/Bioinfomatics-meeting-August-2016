@@ -27,11 +27,15 @@ PSMC utilizes the distribution of Times since the Most Recent Common Ancestor (T
 ![PSMC image 3](https://github.com/Xevkin/Bioinfomatics-meeting-August-2016/blob/master/psmc.png)
 
 ###Running PSMC
-From the psmc github page:
 
-`samtools mpileup -C50 -uf ref.fa aln.bam |\` 
-`bcftools view -c - vcfutils.pl vcf2fq -d 10 -D 100 |\`
-`gzip > diploid.fq.gz`
+First we must generate a .fq file that represent bins of sequence and whether a heterozygote is found there.
+
+`samtools mpileup -C50 -uf ref.fa aln.bam | bcftools view -c -O v -o - | vcfutils.pl vcf2fq -d 10 -D 100 | gzip > diploid.fq.gz`
+
+*Note*Here we exclude all sites with less than a depth of 10 and any with more than 100. In general, I exclude sites with less than a third the mean coverage, and more than twice the mean coverage. So it varies from sample to sample.
+
+*Note*The version of samtools I'm using here is v1.2. If you use the incorrect version, it is incompatible with later steps in the pipeline.
+
 
   utils/fq2psmcfa -q20 diploid.fq.gz > diploid.psmcfa
   psmc -N25 -t15 -r5 -p "4+25*2+4+6" -o diploid.psmc diploid.psmcfa
