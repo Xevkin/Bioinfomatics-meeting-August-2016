@@ -29,8 +29,9 @@ PSMC utilizes the distribution of Times since the Most Recent Common Ancestor (T
 ###Running PSMC
 From the psmc github page:
 
-  samtools mpileup -C50 -uf ref.fa aln.bam | bcftools view -c - \
-  vcfutils.pl vcf2fq -d 10 -D 100 | gzip > diploid.fq.gz
+`samtools mpileup -C50 -uf ref.fa aln.bam |\ 
+bcftools view -c - vcfutils.pl vcf2fq -d 10 -D 100 |\
+gzip > diploid.fq.gz`
 
   utils/fq2psmcfa -q20 diploid.fq.gz > diploid.psmcfa
   psmc -N25 -t15 -r5 -p "4+25*2+4+6" -o diploid.psmc diploid.psmcfa
