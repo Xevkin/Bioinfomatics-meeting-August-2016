@@ -87,4 +87,4 @@ Nadachowska-Brzyska (2016) developed guidelines for PSMC usage, baed on their an
 * PSMC coverage discussion in Orlando 2013: http://www.nature.com/nature/journal/v499/n7456/extref/nature12323-s1.pdf
 * PSMC coverage discussion in Nadachowska-Brzyska (2016): http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4793928/
 * My PSMC script (may need modifying): https://github.com/Xevkin/scripts_for_goat_project/blob/master/run_psmc.sh
-*
+
