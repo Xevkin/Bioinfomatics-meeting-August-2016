@@ -35,12 +35,12 @@ MSMC *can* be run with unphased sequences; however it shows some biases at eithe
 
 2. Starting with a bam file (one for each sample), run bamCaller.py (from msmc-tools), producing a vcf file and a mask file. You must provide a mean coverage estimate:
 
-     samtools mpileup -q 20 -Q 20 -C 50 -u -r <chr> -f <ref.fa> <bam> | bcftools call -c -V indels |\
-     ./bamCaller.py <mean_cov> <out_mask.bed.gz> | gzip -c > <out.vcf.gz>
+`samtools mpileup -q 20 -Q 20 -C 50 -u -r <chr> -f <ref.fa> <bam> | bcftools call -c -V indels |\`
+`./bamCaller.py <mean_cov> <out_mask.bed.gz> | gzip -c > <out.vcf.gz>`
   
 3. For each chromosome, you must run generate_multihetsep.py from msmc-tools to generate the msmc input files. For a single sample:
 
-     ./generate_multihetsep.py --mask=covered_sites_sample1_chr1.bed.txt.gz \                 --mask=mappability_mask_chr1.bed.txt.gz sample1_chr1.vcf.gz
+`./generate_multihetsep.py --mask=covered_sites_sample1_chr1.bed.txt.gz \                 --mask=mappability_mask_chr1.bed.txt.gz sample1_chr1.vcf.gz`
 
   
 
