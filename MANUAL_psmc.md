@@ -52,7 +52,7 @@ You can also plot multiple samples at the same time:
 
 `utils/psmc_plot.pl -M "sample1=0.1, sample2=0.15" output_name sample1.psmc sample2.psmc`
 
-You can also perform bootstraping (do not try to account for FNR!):
+You can also perform bootstrapping - sample subsequences with replacement, estimating demographic history for these subsequences (do not try to account for FNR!):
 
 `utils/fq2psmcfa -q20 diploid.fq.gz > diploid.psmcfa`
 `utils/splitfa diploid.psmcfa > split.psmcfa`
@@ -61,7 +61,19 @@ You can also perform bootstraping (do not try to account for FNR!):
 `cat diploid.psmc round-*.psmc > combined.psmc`
 `utils/psmc_plot.pl -pY50000 combined combined.psmc`
 
+###Coverage
+Orlando (2013) downsampled a 21.1X horse genome, and determined the FNR correction needed to return to the original demographic history.
+* 15.8X - ~0.06
+* 10.5X - ~0.26 - however, older events become less accurate
+
+Nadachowska-Brzyska (2016) developed guidelines for PSMC usage, baed on their analysis of ~200 Flycatcher genomes.
+*Mean genome coverage of ≥18X
+*Per-site minimum coverage (-d) of 10
+*No more than 25% missing data
+
 
 ##Resources
 PSMC paper: http://www.nature.com/nature/journal/v475/n7357/full/nature10231.html
 PSMC github: https://github.com/lh3/psmc
+PSMC coverage discussion in Orlando 2013: http://www.nature.com/nature/journal/v499/n7456/extref/nature12323-s1.pdf
+PSMC coverage discussion in Nadachowska-Brzyska (2016): http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4793928/
