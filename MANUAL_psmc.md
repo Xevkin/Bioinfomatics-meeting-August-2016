@@ -1,4 +1,5 @@
-#PSMC - Pairwise Sequential Markovian Coaslescent model
+#PSMC 
+#Pairwise Sequential Markovian Coaslescent model
 Developed by Heng Li and Richard Durbin, building on the work of Gilean McVean and Niall Cardin (2005).
 
 PSMC utilizes the distribution of Times since the Most Recent Common Ancestor (TMRCA) between the two alleles at loci across the genome (autosomes and X) to estimate the demographic history of the population that individual is from. 
