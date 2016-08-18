@@ -16,7 +16,7 @@ MSMC overcomes the computational complexity of determining the underlying tree b
 
 As more sequences are added, the TMRCA tends to decrease -> more recent population inferences.
 
-![MSMC image 2](https://github.com/Xevkin/Bioinfomatics-meeting-August-2016)
+![MSMC image 2](https://github.com/Xevkin/Bioinfomatics-meeting-August-2016/blob/master/ng.3015-F2.jpg)
 
 **NOTE:** As the number of sequences increases, there is an increasing bias towards smaller ancestral population size.
 
