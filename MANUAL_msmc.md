@@ -64,7 +64,7 @@ R code to visualize output:
 
 **NOTE:** You must scale the output by the mutation rate at this point.
 
-
+![example msmc image](https://github.com/Xevkin/Bioinfomatics-meeting-August-2016/blob/master/all_samples_2016-6-9.jpeg)
 
 ##Resources
 * MSMC paper: http://www.nature.com/ng/journal/v46/n8/full/ng.3015.html
