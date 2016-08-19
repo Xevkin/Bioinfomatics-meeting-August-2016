@@ -47,14 +47,22 @@ You can also investigate population seperation at this stage, by defining subpop
 
 R code to visualize output:
 `mu<-1e-8`
+
 `gen<-5`
+
 `sample1<-read.table(“<sample1.final.txt>”, header=T)`
+
 `sample2<-read.table(“<sample1.final.txt>”, header=T)`
+
 `plot(sample1$left_time_boundary/mu*gen, (1/sample1$lambda)/mu, log="x", ylim=c(0,100000),type="n", xlab="Years ago", ylab="effective population size")`
+
 `lines(sample1$left_time_boundary/mu*gen, (1/sample1$lambda)/mu, type="s", col="blue")`
+
 `lines(sample2$left_time_boundary/mu*gen, (1/sample2$lambda)/mu, type="s", col="green")`
+
 `legend("topleft", legend=c("SOM","HAR", "HL", "Bed3", "Hxh2"), col=c("red", "blue", "green", "black", "orange"), lty=c(1,1,1,1,1))`
 
+**NOTE:** You must scale the output by the mutation rate at this point.
 
 
 
