@@ -21,10 +21,10 @@ This is just the base programme BEAST. Additional modules allow you to:
 5. Compare different site models (by calculating the Bayes Factor)
 
 
-###Before BEAST: Model Selection
+##Before BEAST: Model Selection
 A good idea before running Beauti/BEAST is to run a Model Selection program such as modelgenerator or jmodeltest. These will suggest a site model that best fits with your data, and other parameters that can be used as priors in BEAST (e.g. the proportion of invariant sites; the parameters of the gamma distribution; kappa, the transition/transversion rate ratio).
 
-###Data Format
+##Data Format
 To prepare the BEAST input file (.xml), you must first use Beauti. The input to Beauti is the .nexus format. The ASSUMPTIONS block allows you to define partitions (and other details). This looks like:
 
 
@@ -64,17 +64,52 @@ Other notes on input data:
 1. BEAST ignores missing data.
 2. BEAST core programme using single locus data - *BEAST for multilocus 
 
-###Running Beauti
-To prepare the .xml input for BEAST, we run Beauti. 
+##Running Beauti
+To prepare the .xml input for BEAST, we run Beauti. Beauti is broken into several tabs:
 
-Partitions tab
+Partitions 
 ------ 
 Allows us to link or unlink the tree, clock or site models of any partitions we might have.
 
-Tip Dates tab
+Tip Dates 
 ------ 
 Allows us to define the age of our samples (set "Before Present"). Note that "Height" does not seem to work. Tip sampling allows you to estimate the age of samples but requires some manual set up not through Beauti.
 
-Site Model tab
+Site Model 
 ------
-The Site Model allows you to define how genetic variation the mutation rate is expected to change across site. The default model is a gamma distribution. Gamma category count describes how much rate heterogenity you expect/allow in your data (1 mean none; 4 is sufficient). Shape also describes rate variation (see https://github.com/BEAST2-Dev/MGSM/wiki). You can also define/provide a prior for the proportion of invariant sites in the data. Finally you can define the specific nucleotide substitution model for the data, and any parameters it might have. 
+The Site Model allows you to define how genetic variation the mutation rate is expected to change across the sequences in question. The default model is a gamma distribution. Gamma category count describes how much rate heterogenity you expect/allow in your data (1 mean none; 4 is sufficient). Shape also describes rate variation (see https://github.com/BEAST2-Dev/MGSM/wiki). You can also define/provide a prior for the proportion of invariant sites in the data. 
+
+Finally you can define the specific nucleotide substitution model for the data, and any parameters it might have. 
+
+We can define/allow different site models for different partitions.
+
+Clock Model
+------
+Here we define how we expect the mutation rate to change across the phylogeny. Can define a prior mutation rate, and set different models and priors for each partition.
+
+1. Strict Clock: constant molecular clock
+2. Relaxed Clock Log Normal: clock rate can change along branches
+3. Relaxed Clock Exponential: clock rate can change at nodes
+4. Random local clock: different parts of the phylogeny can have their own clock rate
+
+Priors
+------
+You can further modify priors here. For example you can set minimum and maximum values for particular priors, and set distributions for the priors. For the tree prior, we can set trees more suitable to within-species dataset (Coalescent Contstant Population) or between-species (Yule Model).
+
+MCMC
+------
+Here we define the MCMC settings for the run. We want to perform a run with good mixing (no autocorelation of parameter estimates, varying around a line like a hairy caterpillar) that gives good Effective Sample Sizes (ESS) of each parameter (>100, but the higher the better). 
+
+1. Chain Length is the number of times the MCMC algorithim estimates the parameters of the model. The number of chains needed varies from dataset to dataset. 50 million is what I find useful.
+2. Pre Burn-In is the number of chains we run and then discard before the run starts properly. Random starting state may have very low posterior probability, so we run some number then discard them (e.g. 1 million). Burn-in can also be defined at a later stage (logannotator).
+3. Trace Log: how often we record the parameter estimates in the .log output files. We want about 10,000 samples (so for 50M chains we record every 5,000). 
+4. Tree log: similar, but records the tree estimate in a .tree output file.
+
+Best practise is to run several identical runs (e.g. 2, 4) and combine the output (using logcombiner). We want different runs to equilibrate at the same end point.
+
+##Running BEAST
+BEAST itself can be run through the command line or via a sparse GUI. Command line allows you to give BEAST additional threads. This step is long - 50 million chains with say 4 threads may take a day.
+
+##Analyzing output
+The BEAST output is assessed using tracer. If multiple identical runs have been performed, merge .log and .tree using logcombiner, then load the log files in
+
