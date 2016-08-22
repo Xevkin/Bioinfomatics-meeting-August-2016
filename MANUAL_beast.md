@@ -113,7 +113,12 @@ BEAST itself can be run through the command line or via a sparse GUI. Command li
 ##Analyzing output
 The BEAST output is assessed using tracer. If multiple identical runs have been performed, merge .log and .tree using logcombiner, then load the log files in tracer. We want to see good mixing of the parameters ("hairy caterpillar" mcmc traces) and high ESS for parameters (preferably >200). This suggestions the run has went to convergence - it is sampling parameters from a stationary distribution.
 
+####What you want to see
 ![What you want to see](https://github.com/Xevkin/Bioinfomatics-meeting-August-2016/blob/master/good_trace.png)
+
+
+####What you don't want to see
+![What you don't want to see](https://github.com/Xevkin/Bioinfomatics-meeting-August-2016/blob/master/bad_trace.png)
 
 We can view the mean estimate of each parameter, and other statistics such as the 95% Highest Posterior Distribution (shortest interval in the paramter space that contains 95% of  the posterior probability ).
 
