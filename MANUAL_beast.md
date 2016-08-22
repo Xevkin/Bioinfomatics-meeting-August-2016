@@ -123,3 +123,11 @@ The BEAST output is assessed using tracer. If multiple identical runs have been 
 
 We can view the mean estimate of each parameter, and other statistics such as the 95% Highest Posterior Distribution (shortest interval in the paramter space that contains 95% of the posterior probability ).
 
+###Trees
+Tree files can be combined using logcombiner, and should be summarized using treeannotator - allows you to define number of tree to be burned-in, and the tree heights to be reported (should use maximum clade credibilty tree and median heights). Visualize using figtree - can see 95% HPD for node heights or branch lengths, etc.
+
+![node HPDs](https://github.com/Xevkin/Bioinfomatics-meeting-August-2016/blob/master/tree_HPD.png)
+
+###Resources
+BEAST2: http://beast2.org/
+BEAST usergroup: https://groups.google.com/forum/#!forum/beast-users
