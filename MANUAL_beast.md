@@ -1,6 +1,8 @@
 #BEAST
-##Bayesian Evolutionary Analysis by Sampling Trees
-BEAST performs Bayesian phylogenetic analysis on molecular sequences. It can:
+##Bayesian Evolutionary Analysis by Sampling Trees 
+BEAST performs Bayesian phylogenetic analysis on molecular sequences. Current version is BEAST2. Data for BEAST must be prepared using Beauti.
+
+BEAST can:
 
 1. investigate phylogenies using different clock models (eg relaxed, strict) and site models
 2. estimate mutation rates and divergence times
@@ -19,8 +21,11 @@ This is just the base programme BEAST. Additional modules allow you to:
 5. Compare different site models (by calculating the Bayes Factor)
 
 
+###Before BEAST: Model Selection
+A good idea before running Beauti/BEAST is to run a Model Selection program such as modelgenerator or jmodeltest. These will suggest a site model that best fits with your data, and other parameters that can be used as priors in BEAST (e.g. the proportion of invariant sites; the parameters of the gamma distribution; kappa, the transition/transversion rate ratio).
+
 ###Data Format
-BEAST accepts the .nexus format. The ASSUMPTIONS block allows you to define partitions (and other details). This looks like:
+To prepare the BEAST input file (.xml), you must first use Beauti. The input to Beauti is the .nexus format. The ASSUMPTIONS block allows you to define partitions (and other details). This looks like:
 
 
 	#NEXUS
@@ -52,9 +57,16 @@ BEAST accepts the .nexus format. The ASSUMPTIONS block allows you to define part
 	END;
 
 
-To generate a nexus file, first run Multiple Sequence Alignment (e.g. MUSCLE, CLUSTAL) on the samples of interest.Then convert the resulting fasta file to nexus using an online tool (e.g. [here] (http://sequenceconversion.bugaco.com/converter/biology/sequences/fasta_to_nexus.php)).
+To generate a nexus file, first run Multiple Sequence Alignment (e.g. MUSCLE, CLUSTAL) on the samples of interest.Then convert the resulting fasta file to nexus using an online tool (e.g. [here] (http://sequenceconversion.bugaco.com/converter/biology/sequences/fasta_to_nexus.php)). From here you may need to add an assumptions block.
 
+Other notes on input data:
 
+1. BEAST ignores missing data.
+2. BEAST core programme using single locus data - *BEAST for multilocus 
 
-###Running BEAST
+###Running Beauti
+To prepare the .xml input for BEAST, we run Beauti. 
 
+1. The Partitions tab allows us to link or unlink the tree, clock or site models of any partitions we might have.
+2. The Tip Dates tab allows us to define the age of our samples (set "Before Present"). Note that "Height" does not seem to work. Tip sampling allows you to estimate the age of samples but requires some manual set up not through Beauti.
+3. The Site Model allows you to define how genetic variation the mutation rate is expected to change across site. The default model is a gamma distribution. Gamma category count describes how much rate heterogenity you expect/allow in your data (1 mean none; 4 is sufficient). Shape also describes rate variation (see https://github.com/BEAST2-Dev/MGSM/wiki). You can also define/provide a prior for the proportion of invariant sites in the data. Finally you can define the specific nucleotide substitution model for the data, and any parameters it might have. 
