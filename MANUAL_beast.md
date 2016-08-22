@@ -4,6 +4,7 @@
 BEAST performs Bayesian phylogenetic analysis on molecular sequences. It can: 
 1. investigate phylogenies using different clock models (eg relaxed, strict) and site models
 2. estimate mutation rates and divergence times
+
 3. produce Bayesian phylogenetic trees with posterior probablilites and 95% HPDs 
 4. take into account sampling time of sequences (i.e. ancient samples)
 5. take into account known priors (e.g. mutation rates; split time with outgroup)
