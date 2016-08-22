@@ -7,12 +7,12 @@ BEAST can:
 1. investigate phylogenies using different clock models (eg relaxed, strict) and site models
 2. estimate mutation rates and divergence times
 3. produce Bayesian phylogenetic trees with posterior probablilites and 95% HPDs 
-4. take into account sampling time of sequences (i.e. ancient samples)
+4. take into account sampling time of sequences (e.g. ancient samples; viruses sampled over several decades)
 5. take into account known priors (e.g. mutation rates; split time with outgroup)
-6. partition data (i.e. into coding and non-coding, different genes etc)
+6. partition data (e.g. into coding and non-coding, different genes etc)
 7. produce Bayesian skyline plots
 
-This is just the base programme BEAST. Additional modules allow you to:
+This is just the base prograe BEAST. Additional modules allow you to:
 
 1. *BEAST: allows estimation of species trees using multilocus data
 2. Perform phylogeographic analysis
@@ -65,6 +65,7 @@ Other notes on input data:
 2. BEAST core programme using single locus data - *BEAST for multilocus 
 
 ##Running Beauti
+![Beauti](https://github.com/Xevkin/Bioinfomatics-meeting-August-2016/blob/master/beauti.png)
 To prepare the .xml input for BEAST, we run Beauti. Beauti is broken into several tabs:
 
 Partitions 
@@ -100,7 +101,7 @@ MCMC
 ------
 Here we define the MCMC settings for the run. We want to perform a run with good mixing (no autocorelation of parameter estimates, varying around a line like a hairy caterpillar) that gives good Effective Sample Sizes (ESS - effectively independent draws from the posterior distribution) of each parameter (>100, but the higher the better). 
 
-1. Chain Length is the number of times the MCMC algorithim estimates the parameters of the model. The number of chains needed varies from dataset to dataset. 50 million is what I find useful.
+1. Chain Length is the number of times the MCMC algorithim estimates the parameters of the model. The number of chains needed varies from dataset to dataset. 50 million is what I find useful for ~85 whole mitochondria.
 2. Pre Burn-In is the number of chains we run and then discard before the run starts properly. Random starting state may have very low posterior probability, so we run some number then discard them (e.g. 1 million). Burn-in can also be defined at a later stage (logannotator).
 3. Trace Log: how often we record the parameter estimates in the .log output files. We want about 10,000 samples (so for 50M chains we record every 5,000). 
 4. Tree log: similar, but records the tree estimate in a .tree output file.
@@ -111,7 +112,7 @@ Best practise is to run several identical runs (e.g. 2, 4) and combine the outpu
 BEAST itself can be run through the command line or via a sparse GUI. Command line allows you to give BEAST additional threads. This step is long - 50 million chains with 4 threads may take ~1 day.
 
 ##Analyzing output
-The BEAST output is assessed using tracer. If multiple identical runs have been performed, merge .log and .tree using logcombiner, then load the log files in tracer. We want to see good mixing of the parameters ("hairy caterpillar" mcmc traces) and high ESS for parameters (preferably >200). This suggestions the run has went to convergence - it is sampling parameters from a stationary distribution.
+The BEAST output is assessed using tracer. If multiple identical runs have been performed, merge .log and .tree using logcombiner, then load the log files in tracer. We want to see good mixing of the parameters ("hairy caterpillar" mcmc traces) and high ESS for parameters (preferably >200). This suggests the run has went to convergence - it is sampling parameters from a stationary distribution.
 
 ####What you want to see
 ![What you want to see](https://github.com/Xevkin/Bioinfomatics-meeting-August-2016/blob/master/good_trace.png)
@@ -120,5 +121,5 @@ The BEAST output is assessed using tracer. If multiple identical runs have been 
 ####What you don't want to see
 ![What you don't want to see](https://github.com/Xevkin/Bioinfomatics-meeting-August-2016/blob/master/bad_trace.png)
 
-We can view the mean estimate of each parameter, and other statistics such as the 95% Highest Posterior Distribution (shortest interval in the paramter space that contains 95% of  the posterior probability ).
+We can view the mean estimate of each parameter, and other statistics such as the 95% Highest Posterior Distribution (shortest interval in the paramter space that contains 95% of the posterior probability ).
 
