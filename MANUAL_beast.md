@@ -67,6 +67,11 @@ Other notes on input data:
 ###Running Beauti
 To prepare the .xml input for BEAST, we run Beauti. 
 
-1. The Partitions tab allows us to link or unlink the tree, clock or site models of any partitions we might have.
-2. The Tip Dates tab allows us to define the age of our samples (set "Before Present"). Note that "Height" does not seem to work. Tip sampling allows you to estimate the age of samples but requires some manual set up not through Beauti.
-3. The Site Model allows you to define how genetic variation the mutation rate is expected to change across site. The default model is a gamma distribution. Gamma category count describes how much rate heterogenity you expect/allow in your data (1 mean none; 4 is sufficient). Shape also describes rate variation (see https://github.com/BEAST2-Dev/MGSM/wiki). You can also define/provide a prior for the proportion of invariant sites in the data. Finally you can define the specific nucleotide substitution model for the data, and any parameters it might have. 
+#####Partitions tab
+Allows us to link or unlink the tree, clock or site models of any partitions we might have.
+
+#####Tip Dates tab
+Allows us to define the age of our samples (set "Before Present"). Note that "Height" does not seem to work. Tip sampling allows you to estimate the age of samples but requires some manual set up not through Beauti.
+
+#####Site Model tab
+The Site Model allows you to define how genetic variation the mutation rate is expected to change across site. The default model is a gamma distribution. Gamma category count describes how much rate heterogenity you expect/allow in your data (1 mean none; 4 is sufficient). Shape also describes rate variation (see https://github.com/BEAST2-Dev/MGSM/wiki). You can also define/provide a prior for the proportion of invariant sites in the data. Finally you can define the specific nucleotide substitution model for the data, and any parameters it might have. 
