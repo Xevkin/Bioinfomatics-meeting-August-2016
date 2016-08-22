@@ -128,6 +128,9 @@ Tree files can be combined using logcombiner, and should be summarized using tre
 
 ![node HPDs](https://github.com/Xevkin/Bioinfomatics-meeting-August-2016/blob/master/tree_HPD.png)
 
+###Model Comparison
+The output of tracer is not appropriate for model comparison - you must run Path Sampling to determine which model is best supported. See http://beast2.org/2014/07/14/path-sampling-with-a-gui/
+
 ###Resources
 BEAST2: http://beast2.org/
 BEAST usergroup: https://groups.google.com/forum/#!forum/beast-users
