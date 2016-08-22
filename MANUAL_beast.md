@@ -98,7 +98,7 @@ You can further modify priors here. For example you can set minimum and maximum 
 
 MCMC
 ------
-Here we define the MCMC settings for the run. We want to perform a run with good mixing (no autocorelation of parameter estimates, varying around a line like a hairy caterpillar) that gives good Effective Sample Sizes (ESS) of each parameter (>100, but the higher the better). 
+Here we define the MCMC settings for the run. We want to perform a run with good mixing (no autocorelation of parameter estimates, varying around a line like a hairy caterpillar) that gives good Effective Sample Sizes (ESS - effectively independent draws from the posterior distribution) of each parameter (>100, but the higher the better). 
 
 1. Chain Length is the number of times the MCMC algorithim estimates the parameters of the model. The number of chains needed varies from dataset to dataset. 50 million is what I find useful.
 2. Pre Burn-In is the number of chains we run and then discard before the run starts properly. Random starting state may have very low posterior probability, so we run some number then discard them (e.g. 1 million). Burn-in can also be defined at a later stage (logannotator).
@@ -108,8 +108,12 @@ Here we define the MCMC settings for the run. We want to perform a run with good
 Best practise is to run several identical runs (e.g. 2, 4) and combine the output (using logcombiner). We want different runs to equilibrate at the same end point.
 
 ##Running BEAST
-BEAST itself can be run through the command line or via a sparse GUI. Command line allows you to give BEAST additional threads. This step is long - 50 million chains with say 4 threads may take a day.
+BEAST itself can be run through the command line or via a sparse GUI. Command line allows you to give BEAST additional threads. This step is long - 50 million chains with 4 threads may take ~1 day.
 
 ##Analyzing output
-The BEAST output is assessed using tracer. If multiple identical runs have been performed, merge .log and .tree using logcombiner, then load the log files in
+The BEAST output is assessed using tracer. If multiple identical runs have been performed, merge .log and .tree using logcombiner, then load the log files in tracer. We want to see good mixing of the parameters ("hairy caterpillar" mcmc traces) and high ESS for parameters (preferably >200). This suggestions the run has went to convergence - it is sampling parameters from a stationary distribution.
+
+!(What you want to see)[https://github.com/Xevkin/Bioinfomatics-meeting-August-2016/blob/master/good_trace.png]
+
+We can view the mean estimate of each parameter, and other statistics such as the 95% Highest Posterior Distribution (shortest interval in the paramter space that contains 95% of  the posterior probability ).
 
