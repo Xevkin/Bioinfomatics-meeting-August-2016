@@ -34,11 +34,11 @@ MSMC *can* be run with unphased sequences; however it shows some biases at eithe
 1. You must generate a mappability mask for your reference if you have not done so before (one for humans should already be available). This is both time and space consuming. See makeMappabilityMask.py from msmc-tools and SNPable - http://lh3lh3.users.sourceforge.net/snpable.shtml
 
 2. Starting with a bam file (one for each sample), run bamCaller.py (from msmc-tools), producing a vcf file and a mask file. You must provide a mean coverage estimate:
-`samtools mpileup -q 20 -Q 20 -C 50 -u -r <chr> -f <ref.fa> <bam> | bcftools call -c -V indels |\`
+`samtools mpileup -q 20 -Q 20 -C 50 -u -r <chr> -f <ref.fa> <bam> | bcftools call -c -V indels |\`  
 `./bamCaller.py <mean_cov> <out_mask.bed.gz> | gzip -c > <out.vcf.gz>`
 3. The bed.gz sample mask file may need to be converted to a bed.txt.gz file in the correct format for msmc - this involves some reshaping of files.
 4. For each chromosome, you must run generate_multihetsep.py from msmc-tools to generate the msmc input files. You must have the sample vcf and mask files, as well as a reference mapability mask. If running with multiple samples, add additional vcf and sample mask files. For more a single individual, the samples must all be phased.
-`./generate_multihetsep.py --mask=covered_sites_sample1_chr1.bed.txt.gz \`                 `--mask=mappability_mask_chr1.bed.txt.gz sample1_chr1.vcf.gz >sample1_chr1.msmc`
+`./generate_multihetsep.py --mask=covered_sites_sample1_chr1.bed.txt.gz \`                  `--mask=mappability_mask_chr1.bed.txt.gz sample1_chr1.vcf.gz >sample1_chr1.msmc`
 5. Then run msmc (single sample):
 `./msmc_linux_64bit -o  sample1 <all_msmc_files_for_autosomes>`
 For multiple samples, add the --fixedRecombination flag.

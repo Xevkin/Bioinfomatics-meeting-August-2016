@@ -14,7 +14,7 @@ BEAST can:
 
 This is just the base prograe BEAST. Additional modules allow you to:
 
-1. *BEAST: allows estimation of species trees using multilocus data
+1. BEAST: allows estimation of species trees using multilocus data
 2. Perform phylogeographic analysis
 3. Use SNP and AFLP data
 4. Use fossil sample data
