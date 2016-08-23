@@ -12,9 +12,9 @@ BEAST can:
 6. partition data (e.g. into coding and non-coding, different genes etc)
 7. produce Bayesian skyline plots
 
-This is just the base prograe BEAST. Additional modules allow you to:
+This is just the base program BEAST. Additional modules allow you to:
 
-1. BEAST: allows estimation of species trees using multilocus data
+1. estimation of species trees using multilocus data (starBEAST/*BEAST)
 2. Perform phylogeographic analysis
 3. Use SNP and AFLP data
 4. Use fossil sample data
